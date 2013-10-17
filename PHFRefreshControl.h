@@ -7,6 +7,7 @@
 
 @property (nonatomic, strong) UIColor *tintColor;
 
+@property (nonatomic) CGFloat maxStretchFactor;
 @property (nonatomic, readonly, getter=isRefreshing) BOOL refreshing;
 
 - (void)beginRefreshing;

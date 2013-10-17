@@ -3,7 +3,6 @@
 
 static char kKVOContext;
 static CGFloat const kViewHeight = 44;
-static CGFloat const kMaxStretchFactor = 1.5;
 static NSTimeInterval const kAnimationDuration = 0.25;
 
 @interface PHFRefreshControl ()
@@ -21,6 +20,7 @@ static NSTimeInterval const kAnimationDuration = 0.25;
     [self setAutoresizingMask:UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleBottomMargin];
 
     [[self layer] setAnchorPoint:CGPointMake(0, 1)];
+    [self setMaxStretchFactor:1.5f];
 
     [self addSubview:[self arrowImageView]];
     [self addSubview:[self activityIndicatorView]];
@@ -82,7 +82,7 @@ static NSTimeInterval const kAnimationDuration = 0.25;
         [[self layer] setAnchorPoint:CGPointMake(0, 0)];
 
         CGRect frame = [self frame];
-        frame.origin.y = -kViewHeight * kMaxStretchFactor;
+        frame.origin.y = -kViewHeight * self.maxStretchFactor;
         [self setFrame:frame];
 
         [UIView animateWithDuration:kAnimationDuration animations:^{
@@ -249,7 +249,7 @@ static NSTimeInterval const kAnimationDuration = 0.25;
         CGFloat stretchFactor = MAX(offsetY / kViewHeight, 1);
         CGAffineTransform transform = CGAffineTransformMakeScale(1, stretchFactor);
 
-        if (stretchFactor > kMaxStretchFactor) {
+        if (stretchFactor > self.maxStretchFactor) {
             [self sendActionsForControlEvents:UIControlEventValueChanged];
             [self beginRefreshing];
         } else {
