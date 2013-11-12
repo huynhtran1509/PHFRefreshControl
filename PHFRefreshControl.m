@@ -248,6 +248,8 @@ static NSTimeInterval const kAnimationDuration = 0.25;
         // Stretch the view until a max stretch factor which triggers a refresh.
         CGFloat stretchFactor = MAX(offsetY / kViewHeight, 1);
         CGAffineTransform transform = CGAffineTransformMakeScale(1, stretchFactor);
+        CGFloat alpha = MIN(offsetY / (kViewHeight * 0.5f), 1);
+        self.alpha = alpha;
 
         if (stretchFactor > self.maxStretchFactor) {
             [self sendActionsForControlEvents:UIControlEventValueChanged];
