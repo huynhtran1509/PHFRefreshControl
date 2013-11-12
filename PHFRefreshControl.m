@@ -86,6 +86,7 @@ static NSTimeInterval const kAnimationDuration = 0.25;
         [self setFrame:frame];
 
         [UIView animateWithDuration:kAnimationDuration animations:^{
+            [self setAlpha:1];
             [[self arrowImageView] setAlpha:0];
             [[self activityIndicatorView] setAlpha:1];
             [[self scrollView] setContentOffset:CGPointMake(0, -inset.top)];
@@ -106,6 +107,7 @@ static NSTimeInterval const kAnimationDuration = 0.25;
                                         [[self scrollView] setContentInset:inset];
                                     }
                          completion:^(BOOL finished){
+                                        [self setAlpha:0];
                                         [[self arrowImageView] setAlpha:1];
                                         [[self activityIndicatorView] setAlpha:0];
                                     }];
